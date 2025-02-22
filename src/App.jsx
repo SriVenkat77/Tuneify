@@ -47,7 +47,7 @@ const App = () => {
         setBgColor(album.bgColour);
       }
     } else {
-      setBgColor('transparent'); // Default color when not in album view
+      setBgColor('transparent'); 
     }
   }, [isAlbum, albumId, albumsData]);
   useEffect(() => {
@@ -72,19 +72,19 @@ const App = () => {
   
     const checkForAd = async () => {
       if (user && !user.isPremium && audioRef.current) {
-        if (!audioRef.current.paused) { // Only show ad if audio is playing
+        if (!audioRef.current.paused) { 
           setWasPlayingBeforeAd(true);
           setShowAd(true);
           audioRef.current.pause();
   
-          // Fetch ad dynamically
+        
           const adData = await fetchAdContent();
           setAdContent(adData.message);
   
-          // Show skip button after 5 seconds
+         
           setTimeout(() => setShowCloseButton(true), 3000);
   
-          // Hide ad & resume audio after 20 seconds
+        
           setTimeout(() => {
             setShowAd(false);
             setShowCloseButton(false);
@@ -96,22 +96,22 @@ const App = () => {
       }
     };
   
-    adInterval = setInterval(checkForAd, 120000); // Check every 3 minutes
+    adInterval = setInterval(checkForAd, 600000); 
   
     return () => {
-      clearInterval(adInterval); // Cleanup on unmount
+      clearInterval(adInterval); 
     };
   }, [user, audioRef, wasPlayingBeforeAd]);
 
   useEffect(() => {
     if (showAd) {
-      setSkipTimeLeft(20); // Set countdown to 20 seconds
+      setSkipTimeLeft(20); 
   
       const interval = setInterval(() => {
         setSkipTimeLeft((prev) => {
           if (prev <= 1) {
             clearInterval(interval);
-            setShowAd(false); // Hide ad after countdown
+            setShowAd(false); 
             if (wasPlayingBeforeAd && audioRef.current) {
               audioRef.current.play();
             }
@@ -130,7 +130,7 @@ const App = () => {
   useEffect(() => {
     if (!showAd && wasPlayingBeforeAd && audioRef.current) {
       audioRef.current.play().catch((err) => console.error("Playback failed:", err));
-      setWasPlayingBeforeAd(false); // Reset the flag
+      setWasPlayingBeforeAd(false);
     }
   }, [showAd]);
   
