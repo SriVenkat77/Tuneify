@@ -10,7 +10,7 @@ const AdminLogin = () => {
   const handleLogin = () => {
     const adminPin = import.meta.env.VITE_ADMIN_PIN; 
     if (pin === adminPin) {
-      window.location.href = 'https://spotify-admin.netlify.app/';
+      window.location.href = 'https://tuneify-admin.netlify.app';
     } else {
       setError('Incorrect PIN!');
     }
