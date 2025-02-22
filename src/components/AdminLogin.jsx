@@ -8,7 +8,8 @@ const AdminLogin = () => {
   const navigate = useNavigate();
 
   const handleLogin = () => {
-    if (pin === '2512') {
+    const adminPin = import.meta.env.VITE_ADMIN_PIN; 
+    if (pin === adminPin) {
       window.location.href = 'https://spotify-admin.netlify.app/';
     } else {
       setError('Incorrect PIN!');

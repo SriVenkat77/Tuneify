@@ -4,10 +4,12 @@ import { toast } from "react-toastify";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { FaCheckCircle } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";  
 
 export default function Payment() {
   const [loading, setLoading] = useState(false);
   const [email, setEmail] = useState("");
+  const navigate = useNavigate();
 
   useEffect(() => {
     const script = document.createElement("script");
@@ -50,7 +52,13 @@ export default function Payment() {
               email,
             });
 
-            toast.success("Premium activated!");
+            toast.success("Premium activated!", {
+              onClose: () => navigate("/premium"),  
+            });
+
+            setTimeout(() => {
+              navigate("/premium"); 
+            }, 3000);
           } catch (error) {
             toast.error("Payment verification failed");
           }
@@ -113,8 +121,25 @@ export default function Payment() {
       <p className="text-xs opacity-70 mt-6">
         By purchasing, you agree to our <a href="#" className="underline">Terms & Conditions</a> and <a href="#" className="underline">Privacy Policy</a>.
       </p>
-
-      <ToastContainer />
+ 
+      <ToastContainer
+              position="top-right"
+              autoClose={3000}
+              hideProgressBar={false}
+              newestOnTop={false}
+              closeOnClick
+              rtl={false}
+              pauseOnFocusLoss
+              draggable
+              pauseOnHover
+              theme="dark"
+              style={{
+                fontSize: "16px",
+                fontWeight: "bold",
+                borderRadius: "8px",
+                boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.3)"
+              }}
+            /> 
     </div>
   );
 }
