@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom'; // Import useNavigate
+import { useNavigate } from 'react-router-dom'; 
 import { assets } from '../../assets/assets';
 import { url } from '../../App';
 import { toast } from 'react-toastify';
@@ -14,7 +14,7 @@ const AddSong = () => {
   const [loading, setLoading] = useState(false);
   const [albumData, setAlbumData] = useState([]);
   
-  const navigate = useNavigate(); // Initialize navigate
+  const navigate = useNavigate(); 
 
   const onSubmitHandler = async (e) => {
     e.preventDefault();
@@ -32,18 +32,17 @@ const AddSong = () => {
       if (response.data.success) {
         toast.success('Song Added to Album!');
         
-        // Reset form fields
+ 
         setName('');
         setDesc('');
         setAlbum('none');
         setImage(false);
         setSong(false);
 
-        // Wait for the toast to be visible before redirecting
         setTimeout(() => {
-          navigate('/list-songs'); // Redirect to the song list page
-          window.location.reload(); // Refresh the page
-        }, 2000); // Delay of 2 seconds
+          navigate('/list-songs'); 
+    
+        }, 2000); 
       } else {
         toast.error('Something went wrong');
       }

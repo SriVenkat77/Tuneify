@@ -29,16 +29,16 @@ const AddAlbum = () => {
       if (response.data.success) {
         toast.success("Album Created");
         
-        // Reset form fields
+    
         setName("");
         setDesc("");
         setImage(false);
         setColour("");
 
-        // Redirect to list-album page after a short delay
+       
         setTimeout(() => {
           navigate('/list-albums');
-          window.location.reload(); // Refresh the page
+         
         }, 1500);
       } else {
         toast.error("Something went wrong");
