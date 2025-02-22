@@ -190,13 +190,19 @@ async function sendPremiumEmail(email, name) {
       },
     });
 
-    const mailOptions = {
+     const mailOptions = {
       from: process.env.EMAIL,
       to: email,
-      subject: "🎵 Premium Activated - Enjoy Ad-Free Music!",
-      html: `<h2>Hello ${name},</h2>
-             <p>Your premium subscription is now active! Enjoy unlimited, ad-free music.</p>
-             <p>Thank you for supporting us! 🎶</p>`,
+      subject: "🎵 Tuneify Premium Activated - Enjoy Ad-Free Music! ",
+      html: `<div style="font-family: Arial, sans-serif; text-align: center;">
+           <h2>🎉 Hello ${name},</h2>
+           <p>🌟 <strong>Great News!</strong> Your <b>Tuneify Premium</b> subscription is now active! 🎶</p>
+           <p>🎧 Enjoy unlimited music streaming, completely <b>ad-free</b>! No interruptions, just pure vibes. 🔥</p>
+           <p>💖 Thank you for being a part of our music family!</p>
+           <p>🎵 <b>Stay Tuned, Stay Groovy!</b> 🎶</p>
+           <hr style="border: 1px solid #ddd;">
+           <p>📩 Need help? Contact us at <a href="mailto:support@tuneify.com">support@tuneify.com</a></p>
+         </div>`,
     };
 
     await transporter.sendMail(mailOptions);
